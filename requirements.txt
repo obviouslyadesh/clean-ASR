@@ -1,0 +1,7 @@
+# Runtime dependencies for the clean-ASR Streamlit demo.
+# Keep torch and torchaudio on matching major versions (they are released in pairs).
+streamlit>=1.31
+torch>=2.2
+torchaudio>=2.2
+soundfile>=0.12
+numpy>=1.24
