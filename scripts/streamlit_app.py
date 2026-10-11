@@ -38,10 +38,14 @@ TARGET_SR = 16_000
 VOCAB_PATH = PROJECT_ROOT / "manifests" / "vocab.json"
 
 # Sidebar presets: label -> checkpoint path.
-# Deployment bundle ships the final augmented model (epoch 39) only. Its
-# architecture/feature config is embedded in the .pt, so no config JSON is needed.
 CHECKPOINTS: dict[str, Path] = {
-    "Final augmented (epoch 39)": PROJECT_ROOT / "models" / "final_aug_best.pt",
+    "Final augmented (epoch 39)": (
+        PROJECT_ROOT
+        / "experiments/final_waveform_specaugment_20261010_002156/final_aug_best.pt"
+    ),
+    "Clean baseline (epoch 12)": (
+        PROJECT_ROOT / "checkpoints" / "clean_baseline" / "clean_full_overnight_best.pt"
+    ),
 }
 
 

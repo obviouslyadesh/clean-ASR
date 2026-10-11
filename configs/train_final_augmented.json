@@ -1,0 +1,66 @@
+{
+  "features": {
+    "sample_rate": 16000,
+    "n_fft": 400,
+    "hop_length": 160,
+    "win_length": 400,
+    "n_mels": 80,
+    "f_min": 20.0,
+    "f_max": 8000.0
+  },
+  "augment": {
+    "prob": 0.5,
+    "noise_prob": 0.8,
+    "rir_prob": 0.4,
+    "speed_prob": 0.5,
+    "gain_prob": 0.5,
+    "snr_low_db": 0.0,
+    "snr_high_db": 20.0,
+    "speed_min": 0.9,
+    "speed_max": 1.1,
+    "gain_low_db": -6.0,
+    "gain_high_db": 6.0,
+    "noise_categories": ["noise", "music", "speech"],
+    "pitch_enabled": false
+  },
+  "spec_augment": {
+    "enabled": true,
+    "n_freq_masks": 2,
+    "freq_mask_width": 20,
+    "n_time_masks": 2,
+    "time_mask_width": 60
+  },
+  "model": {
+    "n_mels": 80,
+    "cnn_channels": [32, 64],
+    "cnn_kernel": 3,
+    "rnn_hidden": 256,
+    "rnn_layers": 2,
+    "rnn_dropout": 0.1,
+    "hidden_dim": 256,
+    "vocab_size": 91,
+    "blank_id": 0
+  },
+  "train": {
+    "seed": 42,
+    "batch_size": 16,
+    "epochs": 40,
+    "lr": 0.0003,
+    "weight_decay": 1e-05,
+    "grad_clip": 5.0,
+    "num_workers": 4,
+    "subset_hours": 0.0,
+    "device": "mps",
+    "checkpoint_dir": "checkpoints/final_augmented",
+    "val_max_utts": 0,
+    "max_utt_seconds": 16.0,
+    "zero_infinity": true,
+    "_comment": "FINAL config prepared after hyperparameter screening (experiments/hyperparameter_screening.md). FINAL_WD=1e-5, FINAL_SCHEDULER=none, FINAL_LR=3e-4 -- unchanged from the clean baseline because the screening found no CER/WER gain from higher WD or ReduceLROnPlateau. Only the augmentation switches differ (waveform augment ON, SpecAugment ON) so the comparison vs the clean baseline stays single-variable. DO NOT launch until explicitly requested.",
+    "scheduler": "none",
+    "sched_factor": 0.5,
+    "sched_patience": 2,
+    "min_lr": 1e-06,
+    "early_stop_patience": 5,
+    "max_seconds": 0.0
+  }
+}
